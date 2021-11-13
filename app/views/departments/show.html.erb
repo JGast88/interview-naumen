@@ -20,5 +20,10 @@
   <%= @department.parent_id %>
 </p>
 
+<%= link_to 'Change name', change_name_department_path(@department) %> |
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>
+
+<h2>Actions</h2>
+
+<%= render 'form_change_name', department: @department %>

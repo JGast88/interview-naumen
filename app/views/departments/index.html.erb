@@ -5,10 +5,10 @@
 <table>
   <thead>
     <tr>
-      <th>Created at</th>
-      <th>Disbanded at</th>
       <th>Name</th>
       <th>Parent</th>
+      <th>Created at</th>
+      <th>Disbanded at</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +16,10 @@
   <tbody>
     <% @departments.each do |department| %>
       <tr>
-        <td><%= department.created_at %></td>
-        <td><%= department.disbanded_at %></td>
         <td><%= department.name %></td>
         <td><%= department.parent_id %></td>
+        <td><%= department.created_at %></td>
+        <td><%= department.disbanded_at %></td>
         <td><%= link_to 'Show', department %></td>
         <td><%= link_to 'Edit', edit_department_path(department) %></td>
         <td><%= link_to 'Destroy', department, method: :delete, data: { confirm: 'Are you sure?' } %></td>

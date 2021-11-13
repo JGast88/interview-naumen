@@ -1,5 +1,8 @@
 class DepartmentsController < ApplicationController
-  before_action :set_department, only: %i[ show edit update destroy ]
+  before_action :set_department, only: %i[ show edit update destroy change_name ]
+
+  def change_name
+  end
 
   # GET /departments or /departments.json
   def index

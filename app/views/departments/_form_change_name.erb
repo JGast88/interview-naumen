@@ -1,0 +1,13 @@
+<h3>Change name</h3>
+<%= form_with(model: department, method: :put) do |form| %>
+  <%= render '/shared/errors', object: department %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
