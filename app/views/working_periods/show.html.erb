@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start at:</strong>
+  <%= @working_period.start_at %>
+</p>
+
+<p>
+  <strong>End at:</strong>
+  <%= @working_period.end_at %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @working_period.department_id %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @working_period.person_id %>
+</p>
+
+<%= link_to 'Edit', edit_working_period_path(@working_period) %> |
+<%= link_to 'Back', working_periods_path %>
