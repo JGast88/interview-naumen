@@ -79,8 +79,9 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: interview_naumen_production
-  username: interview_naumen
-  password: <%= ENV['INTERVIEW_NAUMEN_DATABASE_PASSWORD'] %>
+
+#production:
+#  <<: *default
+#  database: interview_naumen_production
+#  username: interview_naumen
+#  password: <%= ENV['INTERVIEW_NAUMEN_DATABASE_PASSWORD'] %>
