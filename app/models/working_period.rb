@@ -2,7 +2,7 @@ class WorkingPeriod < ApplicationRecord
   belongs_to :department
   belongs_to :person
 
-  validates :periods_overlaps
+  validate :periods_overlaps
 
 
 	def active_timerange

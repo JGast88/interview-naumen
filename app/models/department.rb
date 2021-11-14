@@ -7,7 +7,7 @@ class Department < ApplicationRecord
 	
 	validates :name, presence: true
 	validates :created_at, presence: true
-	validates :overlaps_with_parent_department
+	validate :overlaps_with_parent_department
 	
 
 	# период существования 
