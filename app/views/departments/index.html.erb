@@ -17,7 +17,7 @@
     <% @departments.each do |department| %>
       <tr>
         <td><%= department.name %></td>
-        <td><%= department.parent_id %></td>
+        <td><%= department.parent&.name %></td>
         <td><%= department.created_at %></td>
         <td><%= department.disbanded_at %></td>
         <td><%= link_to 'Show', department %></td>

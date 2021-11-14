@@ -1,7 +1,50 @@
 class DepartmentsController < ApplicationController
-  before_action :set_department, only: %i[ show edit update destroy change_name ]
+  before_action :set_department, only: %i[ show edit update destroy new_name set_name new_parent set_parent ]
 
-  def change_name
+  def new_name
+  end
+
+  def set_name
+    @department.name = params[:name]
+    
+    # end current active period
+    last_active_period = @department.active_periods.last
+    last_active_period.end_at = params[:changed_at]
+    # start new active period
+    current_active_period = @department.active_periods.new(
+      start_at: params[:changed_at],
+      department_name: params[:name]
+    )
+
+    ActiveRecord::Base.transaction do
+      @department.save
+      last_active_period.save
+      current_active_period.save
+    end
+  end
+
+  def new_parent
+    @departments = Department.all
+  end
+
+  def set_parent
+    @department.parent_id = params[:parent_id]
+
+    # end current active period
+    last_active_period = @department.active_periods.last
+    last_active_period.end_at = params[:changed_at]
+    # start new active period
+    current_active_period = @department.active_periods.new(
+      start_at: params[:changed_at],
+      department_name: @department.name,
+      parent_department_name: @department.parent&.name,
+    )
+
+    ActiveRecord::Base.transaction do
+      @department.save
+      last_active_period.save
+      current_active_period.save
+    end
   end
 
   # GET /departments or /departments.json
@@ -11,6 +54,8 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/1 or /departments/1.json
   def show
+    @people = Person.all
+    @departments = Department.all
   end
 
   # GET /departments/new
@@ -26,13 +71,20 @@ class DepartmentsController < ApplicationController
   def create
     @department = Department.new(department_params)
 
-    respond_to do |format|
-      if @department.save
-        format.html { redirect_to @department, notice: "Department was successfully created." }
-        format.json { render :show, status: :created, location: @department }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
+    ActiveRecord::Base.transaction do
+      respond_to do |format|
+        if @department.save 
+          @department.active_periods.create({
+            start_at: @department.created_at,
+            department_name: @department.name,
+            parent_department_name: @department.parent&.name
+          })
+          format.html { redirect_to @department, notice: "Department was successfully created." }
+          format.json { render :show, status: :created, location: @department }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @department.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_at: 2021-11-14 13:41:21
+  end_at: 2021-11-14 13:41:21
+  department: one
+
+two:
+  start_at: 2021-11-14 13:41:21
+  end_at: 2021-11-14 13:41:21
+  department: two

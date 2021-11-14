@@ -1,10 +1,15 @@
 <h3>Change name</h3>
-<%= form_with(model: department, method: :put) do |form| %>
+<%= form_with(url: set_name_department_path(department), method: :patch) do |form| %>
   <%= render '/shared/errors', object: department %>
 
   <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :changed_at %>
+    <%= form.datetime_field :changed_at %>
   </div>
 
   <div class="actions">

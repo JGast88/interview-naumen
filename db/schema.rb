@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_13_100038) do
+ActiveRecord::Schema.define(version: 2021_11_14_104121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_periods", force: :cascade do |t|
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string "department_name"
+    t.string "parent_department_name"
+    t.bigint "department_id", null: false
+    t.index ["department_id"], name: "index_active_periods_on_department_id"
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_11_13_100038) do
     t.index ["person_id"], name: "index_working_periods_on_person_id"
   end
 
+  add_foreign_key "active_periods", "departments"
   add_foreign_key "working_periods", "departments"
   add_foreign_key "working_periods", "people"
 end
