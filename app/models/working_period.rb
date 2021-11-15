@@ -11,7 +11,7 @@ class WorkingPeriod < ApplicationRecord
 
   private
     def periods_overlaps
-      unless department.active_timerange.include?(active_timerange)
+      unless department.active_timerange.cover?(active_timerange)
         txt = %q(
           период работы сотрудника в отделе должен лежать в пределах периода
           существования отдела
