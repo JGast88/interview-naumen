@@ -2,7 +2,7 @@
 <%= form_with(url: set_parent_department_path(department), method: :patch) do |form| %>  <%= render '/shared/errors', object: department %>
   <div class="field">
     <%= form.label :parent_id %>
-    <%= form.select :parent_id, options_from_collection_for_select(@departments, "id", "name") %>
+    <%= form.select :parent_id, options_from_collection_for_select(@departments, "id", "name"), include_blank: 'None' %>
   </div>
 
   <div class="field">
