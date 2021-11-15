@@ -1,14 +1,15 @@
+<h3>Assign person to department</h3>
 <%= form_with(model: working_period) do |form| %>
   <%= render '/shared/errors', object: working_period %>
 
   <div class="field">
     <%= form.label :start_at %>
-    <%= form.date_field :start_at %>
+    <%= form.date_field :start_at, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :end_at %>
-    <%= form.date_field :end_at %>
+    <%= form.date_field :end_at, required: true %>
   </div>
 
   <div class="field">
