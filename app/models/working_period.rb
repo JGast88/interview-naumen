@@ -4,6 +4,9 @@ class WorkingPeriod < ApplicationRecord
 
   validate :periods_overlaps
 
+	scope :overlapping_date, -> (date) do
+    where("start_at < ? AND end_at > ?", date, date)
+	end
 
 	def active_timerange
     start_at..(end_at || DateTime::Infinity.new)
