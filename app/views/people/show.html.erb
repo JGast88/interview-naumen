@@ -5,8 +5,8 @@
   <%= @person.fullname %>
 </p>
 
+<%= link_to 'Assign person to department', new_working_period_path(person: @person) %> |
 <%= link_to 'Edit', edit_person_path(@person) %> |
 <%= link_to 'Back', people_path %>
 
-<h2>Actions</h2>
-
+<%= render 'working_periods/working_periods' %>
