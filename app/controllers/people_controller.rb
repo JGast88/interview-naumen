@@ -8,6 +8,7 @@ class PeopleController < ApplicationController
 
   # GET /people/1 or /people/1.json
   def show
+    @working_periods = @person.working_periods
   end
 
   # GET /people/new
