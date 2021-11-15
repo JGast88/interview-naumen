@@ -1,33 +1,5 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Working Periods</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Start at</th>
-      <th>End at</th>
-      <th>Department</th>
-      <th>Person</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @working_periods.each do |working_period| %>
-      <tr>
-        <td><%= working_period.start_at %></td>
-        <td><%= working_period.end_at %></td>
-        <td><%= working_period.department_id %></td>
-        <td><%= working_period.person_id %></td>
-        <td><%= link_to 'Show', working_period %></td>
-        <td><%= link_to 'Edit', edit_working_period_path(working_period) %></td>
-        <td><%= link_to 'Destroy', working_period, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render 'working_periods/working_periods', collection: @working_periods %>
 <br>
 
 <%= link_to 'New Working Period', new_working_period_path %>

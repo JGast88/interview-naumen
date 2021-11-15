@@ -1,0 +1,8 @@
+<tr>
+    <td><%= working_period.start_at %></td>
+    <td><%= working_period.end_at %></td>
+    <td><%= working_period.department_id %></td>
+    <td><%= working_period.person_id %></td>
+    <td><%= link_to 'Destroy', working_period, method: :delete, data: { confirm: 'Are you sure?' } if working_period.persisted? %></td>
+
+</tr>
