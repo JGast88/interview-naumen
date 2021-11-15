@@ -9,6 +9,9 @@ class Department < ApplicationRecord
 	validates :created_at, presence: true
 	validate :overlaps_with_parent_department
 	
+	scope :overlapping_date, -> (date) do
+		joins(:active_periods).where("active_periods.start_at < ? AND active_periods.end_at > ?", date, date)
+	end
 
 	# период существования 
 	def active_timerange
