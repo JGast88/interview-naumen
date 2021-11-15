@@ -13,6 +13,8 @@ class WorkingPeriodsController < ApplicationController
   # GET /working_periods/new
   def new
     @working_period = WorkingPeriod.new
+    @departments = Department.all
+    @people = Person.all
   end
 
   # GET /working_periods/1/edit
