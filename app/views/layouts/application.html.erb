@@ -10,9 +10,27 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= link_to 'Сотрудники', people_path %>
-    <%= link_to 'Отделы', departments_path %>
+  <body class="container">
+
+    <ul class="nav nav-tabs nav-justified">
+      <li class="nav-item">
+        <h4 class="mb-0">
+          <%= link_to 'Dashboard', dashboard_path, class: 'nav-link' %>
+        </h4>
+      </li>
+      <li class="nav-item">
+        <h4 class="mb-0">
+          <%= link_to 'People', people_path, class: 'nav-link' %>
+        </h4>
+      </li>
+      <li class="nav-item">
+        <h4 class="mb-0">
+          <%= link_to 'Departments', departments_path, class: 'nav-link' %>
+        </h4>
+      </li>
+    </ul>
+
     <%= yield %>
+    
   </body>
 </html>

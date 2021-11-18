@@ -1,0 +1,18 @@
+<% people = department.people_working_on_date(DateTime.now) # TODO %>
+<% count = people.nil? ? 0 : people.size %>
+
+<li>
+	<%= link_to department do %>
+		<%= department.name %>
+		<br>
+		<span>People: <%= count %></span>
+	<% end %>
+	<details>
+	<summary></summary>
+		<nav class="sub-menu">
+			<ul>
+				<%= render department.children %>
+			</ul>
+		</nav>
+	</details>
+</li>

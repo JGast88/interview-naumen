@@ -1,8 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Departments</h1>
+<h1>
+  Departments
+  <%= link_to (t '.new'), new_department_path, class: 'btn btn-success' %>
+</h1>
 
-<table>
+
+<table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -30,4 +34,5 @@
 
 <br>
 
-<%= link_to 'New Department', new_department_path %>
+<% render @departments %>
+<%= render 'departments/departments' %>

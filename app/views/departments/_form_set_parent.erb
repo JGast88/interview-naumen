@@ -1,16 +1,24 @@
-<h3>Set parent</h3>
-<%= form_with(url: set_parent_department_path(department), method: :patch) do |form| %>  <%= render '/shared/errors', object: department %>
-  <div class="field">
-    <%= form.label :parent_id %>
-    <%= form.select :parent_id, options_from_collection_for_select(@departments, "id", "name"), include_blank: 'None' %>
+<div class="card mb-3">
+  <div class="card-header">
+    Set parent
+  </div>
+  <div class="card-body">
+    <%= form_with(url: set_parent_department_path(department), method: :patch) do |form| %>  <%= render '/shared/errors', object: department %>
+      <div class="field">
+        <%= form.label :parent_id %>
+        <%= form.select :parent_id, options_from_collection_for_select(@departments, "id", "name"), include_blank: 'None', class: 'form-control' %>
+      </div>
+
+      <div class="field">
+        <%= form.label :changed_at %>
+        <%= form.date_field :changed_at, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= form.label :changed_at %>
-    <%= form.datetime_field :changed_at %>
-  </div>
+</div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

@@ -1,18 +1,24 @@
-<h3>Change name</h3>
-<%= form_with(url: set_name_department_path(department), method: :patch) do |form| %>
-  <%= render '/shared/errors', object: department %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+<div class="card">
+  <div class="card-header">
+      <h3 class="mb-0">Change department name</h3>
   </div>
+  <div class="card-body">
+    <%= form_with(url: set_name_department_path(department), method: :patch) do |form| %>
+      <%= render '/shared/errors', object: department %>
 
-  <div class="field">
-    <%= form.label :changed_at %>
-    <%= form.datetime_field :changed_at %>
-  </div>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="field">
+        <%= form.label :changed_at %>
+        <%= form.date_field :changed_at, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Set', class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>People</h1>
+<h1>
+  People
+  <%= link_to (t '.new'), new_person_path, class: 'btn btn-success' %>
+</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Fullname</th>
@@ -24,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Person', new_person_path %>

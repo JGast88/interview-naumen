@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  root to: 'people#index'
+  get 'dashboard', to: 'dashboard#index'
+  get 'filter', to: 'dashboard#filter'
   get 'active_periods/create'
   get 'active_period/create'
-  root to: 'people#index'
   resources :departments do
     member do
       get 'new_name'

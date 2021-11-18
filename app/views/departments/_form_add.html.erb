@@ -1,22 +1,33 @@
-<%= form_with(model: department) do |form| %>
-  <%= render '/shared/errors', object: department %>
-
-  <div class="field">
-    <%= form.label :created_at %>
-    <%= form.datetime_field :created_at %>
+<div class="card">
+  <div class="card-header">
+      <h3 class="mb-0">Create new department</h3>
   </div>
+  <div class="card-body">
+    <%= form_with(model: department) do |form| %>
+      <%= render '/shared/errors', object: department %>
 
-  <div class="field">
-    <%= form.label :disbanded_at %>
-    <%= form.datetime_field :disbanded_at %>
-  </div>
+      <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name, class: 'form-control' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
+      <div class="field">
+        <%= form.label :created_at %>
+        <%= form.date_field :created_at, class: 'form-control' %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="field">
+        <%= form.label :disbanded_at %>
+        <%= form.date_field :disbanded_at, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Create', class: 'btn btn-success' %>
+      </div>
+
+    <% end %>
   </div>
-<% end %>
+</div>
+
+
+

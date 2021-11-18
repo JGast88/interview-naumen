@@ -1,31 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Created at:</strong>
-  <%= @department.created_at %>
-</p>
+<div class="card mb-3">
+  <div class="card-header">
+    <%= @department.name %>
+  </div>
+  <div class="card-body">
 
-<p>
-  <strong>Disbanded at:</strong>
-  <%= @department.disbanded_at %>
-</p>
+    <p>
+      <strong>Name:</strong>
+      <%= @department.name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @department.name %>
-</p>
+    <p>
+      <strong>Created at:</strong>
+      <%= @department.created_at %>
+    </p>
 
-<p>
-  <strong>Parent:</strong>
-  <%= @department.parent_id %>
-</p>
+    <p>
+      <strong>Disbanded at:</strong>
+      <%= @department.disbanded_at %>
+    </p>
 
-<%= link_to 'Assign person to department', new_working_period_path(department: @department) %> |
-<%= link_to 'New parent', new_parent_department_path(@department) %> |
-<%= link_to 'New name', new_name_department_path(@department) %> |
-<%= link_to 'Edit', edit_department_path(@department) %> |
-<%= link_to 'Back', departments_path %>
+    <p>
+      <strong>Parent:</strong>
+      <%= @department.parent_id %>
+    </p>
 
-<h2>Actions</h2>
+  </div>
+</div>
 
-<%= render 'form_set_name', department: @department %>
+<div class="btn-group mb-3" role="group" aria-label="Basic example">
+  <%= link_to (t '.new'), new_department_path, class: 'btn btn-outline-success' %>
+  <%= link_to 'Assign person to department', new_working_period_path(department_id: @department), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'Set parent', new_parent_department_path(@department), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'Set name', new_name_department_path(@department), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'Edit', edit_department_path(@department), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'List', departments_path, class: 'btn btn-outline-secondary' %>
+</div>
+
+<%= render 'active_periods/active_periods'  %>

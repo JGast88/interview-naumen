@@ -1,0 +1,8 @@
+<main id="people" class="card">
+    <div class="card-header">
+        <%= @department ? @department.name : 'Company' %>
+    </div>
+    <div class="card-body">
+	    <%= render 'people/people' %>
+    </div>
+</main>

@@ -5,8 +5,10 @@
   <%= @person.fullname %>
 </p>
 
-<%= link_to 'Assign person to department', new_working_period_path(person: @person) %> |
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+<div class="btn-group mb-3">
+  <%= link_to 'Assign person to department', new_working_period_path(person_id: @person), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'Edit', edit_person_path(@person), class: 'btn btn-outline-secondary' %>
+  <%= link_to 'List', people_path, class: 'btn btn-outline-secondary' %>
+</div>
 
 <%= render 'working_periods/working_periods' %>

@@ -6,13 +6,15 @@ class DepartmentsController < ApplicationController
 
   def set_name
     @department.name = params[:name]
+    date = params[:changed_at]
     
+    # TODO
     # end current active period
     last_active_period = @department.active_periods.last
-    last_active_period.end_at = params[:changed_at]
+    last_active_period.end_at = date
     # start new active period
     current_active_period = @department.active_periods.new(
-      start_at: params[:changed_at],
+      start_at: date,
       department_name: params[:name]
     )
 
@@ -21,6 +23,8 @@ class DepartmentsController < ApplicationController
       last_active_period.save
       current_active_period.save
     end
+    
+    redirect_to @department
   end
 
   def new_parent
@@ -45,6 +49,7 @@ class DepartmentsController < ApplicationController
       last_active_period.save
       current_active_period.save
     end
+    redirect_to @department
   end
 
   # GET /departments or /departments.json

@@ -1,0 +1,16 @@
+<div class="card">
+    <div class="card-header">
+        History
+    </div>
+    <div>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Parent department name</th>
+                <th>Start</th>
+                <th>End</th>
+            </tr>
+            <%= render @department.active_periods %>
+        </table>
+    </div>
+</div>

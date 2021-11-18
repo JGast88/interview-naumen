@@ -1,0 +1,21 @@
+
+<header id="filter" class="row mb-3">
+	<div class="col">
+        <div class="card">
+            <div class="card-header">
+                Filter
+            </div>
+            <div class="card-body">
+                <%= form_with url: dashboard_path, method: :get do |f| %>
+                    <div class="input-group">
+                        <%= f.date_field :date, class: 'form-control' %>
+                        <div class="input-group-append">
+                            <%= f.submit 'Filter', class: 'btn btn-outline-primary' %>
+                            <button type="button" class="btn btn-outline-danger">Reset</button>
+                        </div>
+                    </div>	
+                <% end %>
+            </div>
+        </div>	
+	</div>
+</header>
