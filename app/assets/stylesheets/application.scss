@@ -53,9 +53,9 @@
   align-items: center;
   top: 0;
   right: 0;
-  background: #fde3e8;
+  background: #6ed6ff;
   cursor: pointer;
-  color: #f06782;
+  color: #fff;
 }
 
 .menu .sub-menu summary {
@@ -65,13 +65,13 @@
 .menu a {
   display: block;
   padding: 13px 15px;
-  background: #fde3e8;
-  color: #f06782;
+  padding-right: 50px;;
+  background: #4d5c62;
+  color: #fff;
 }
 
 .menu a:hover,
 .menu summary:hover {
-  background-color: #f06782;
   color: #fff;
 }
 
