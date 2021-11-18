@@ -1,11 +1,18 @@
-<%= form_with(model: person) do |form| %>
-  <%= render '/shared/errors', object: person %>
-  <div class="field">
-    <%= form.label :fullname %>
-    <%= form.text_field :fullname %>
+<div class="card">
+  <div class="card-header">
+      <h3 class="mb-0">Create new person</h3>
   </div>
+  <div class="card-body">
+    <%= form_with(model: person) do |form| %>
+      <%= render '/shared/errors', object: person %>
+      <div class="field">
+        <%= form.label :fullname %>
+        <%= form.text_field :fullname, class: 'form-control' %>
+      </div>
 
-  <div class="actions">
-    <%= form.submit %>
+      <div class="actions">
+        <%= form.submit 'Create', class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
