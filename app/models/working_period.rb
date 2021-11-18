@@ -9,7 +9,7 @@ class WorkingPeriod < ApplicationRecord
   default_scope { order(start_at: :desc) }
 
 	scope :overlapping_date, -> (date) do
-    where("start_at < ? AND end_at > ?", date, date)
+    where("start_at <= ? AND (end_at > ? OR end_at IS NULL)", date, date)
 	end
 
   scope :overlapping_with_department, -> (department, date) do
@@ -19,7 +19,7 @@ class WorkingPeriod < ApplicationRecord
   end
 
 	def active_timerange
-    start_at..(end_at || DateTime::Infinity.new)
+    start_at..(end_at || Date.new(2049,1,1))
   end
 
   private
@@ -34,12 +34,14 @@ class WorkingPeriod < ApplicationRecord
     end
 
     def working_only_at_one_department_at_time
-      if person.working_periods.any?{|wp| wp.active_timerange.overlaps?(active_timerange)}
-        txt = %q(
-          сотрудник может переходить из отдела в любой момент
-          работает только в одном отделе
-        )
-        errors.add(:base, txt)
+      if person.working_periods.any?
+        if person.working_periods.any?{|wp| wp.active_timerange.overlaps?(active_timerange)}
+          txt = %q(
+            сотрудник может переходить из отдела в любой момент
+            работает только в одном отделе
+          )
+          errors.add(:base, txt)
+        end
       end
     end
 end

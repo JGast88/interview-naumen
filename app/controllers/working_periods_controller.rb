@@ -27,7 +27,7 @@ class WorkingPeriodsController < ApplicationController
 
     respond_to do |format|
       if @working_period.save
-        format.html { redirect_to @working_period, notice: "Working period was successfully created." }
+        format.html { redirect_to @working_period.department, notice: "Working period was successfully created." }
         format.json { render :show, status: :created, location: @working_period }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +40,7 @@ class WorkingPeriodsController < ApplicationController
   def update
     respond_to do |format|
       if @working_period.update(working_period_params)
-        format.html { redirect_to @working_period, notice: "Working period was successfully updated." }
+        format.html { redirect_to @working_period.department, notice: "Working period was successfully updated." }
         format.json { render :show, status: :ok, location: @working_period }
       else
         format.html { render :edit, status: :unprocessable_entity }

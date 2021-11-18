@@ -4,7 +4,7 @@ class ActivePeriod < ApplicationRecord
   default_scope { order(start_at: :desc) }
 
 	scope :overlapping_date, -> (date) do
-    where("start_at < ? AND end_at > ?", date, date)
+    where("start_at <= ? AND (end_at > ? OR end_at IS NULL)", date, date)
 	end
   
 end

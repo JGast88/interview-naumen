@@ -1,11 +1,11 @@
-<% people = department.people_working_on_date(DateTime.now) # TODO %>
+<% people = department.people_working_on_date(@date) %>
 <% count = people.nil? ? 0 : people.size %>
 
 <li>
-	<%= link_to department do %>
-		<%= department.name %>
-		<br>
-		<span>People: <%= count %></span>
+	<%= link_to dashboard_path(department: department, date: @date ) do %>
+		<%= department.name_on_date(@date) %>
+		<hr>
+		<small>People: <%= count %></small>
 	<% end %>
 	<details>
 	<summary></summary>

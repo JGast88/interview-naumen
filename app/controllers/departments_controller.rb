@@ -18,13 +18,18 @@ class DepartmentsController < ApplicationController
       department_name: params[:name]
     )
 
+    text = 'Failed'
     ActiveRecord::Base.transaction do
-      @department.save
-      last_active_period.save
-      current_active_period.save
+      if @department.save!
+        if last_active_period.save!
+          if current_active_period.save!
+            text = 'Success'
+          end
+        end
+      end
     end
     
-    redirect_to @department
+    redirect_to @department, notice: text
   end
 
   def new_parent
@@ -78,12 +83,13 @@ class DepartmentsController < ApplicationController
 
     ActiveRecord::Base.transaction do
       respond_to do |format|
-        if @department.save 
-          @department.active_periods.create({
+        if @department.save! 
+          active_period = @department.active_periods.new(
             start_at: @department.created_at,
             department_name: @department.name,
             parent_department_name: @department.parent&.name
-          })
+          )
+          active_period.save!
           format.html { redirect_to @department, notice: "Department was successfully created." }
           format.json { render :show, status: :created, location: @department }
         else

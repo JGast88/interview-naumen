@@ -8,10 +8,10 @@
             <div class="card-body">
                 <%= form_with url: dashboard_path, method: :get do |f| %>
                     <div class="input-group">
-                        <%= f.date_field :date, class: 'form-control' %>
+                        <%= f.date_field :date, value: @date, class: 'form-control' %>
                         <div class="input-group-append">
                             <%= f.submit 'Filter', class: 'btn btn-outline-primary' %>
-                            <button type="button" class="btn btn-outline-danger">Reset</button>
+                            <%= link_to 'Reset', dashboard_path, class: 'btn btn-outline-danger' %>
                         </div>
                     </div>	
                 <% end %>
