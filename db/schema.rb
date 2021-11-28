@@ -16,11 +16,11 @@ ActiveRecord::Schema.define(version: 2021_11_14_104121) do
   enable_extension "plpgsql"
 
   create_table "active_periods", force: :cascade do |t|
+    t.string "name"
     t.datetime "start_at"
     t.datetime "end_at"
-    t.string "department_name"
-    t.string "parent_department_name"
     t.bigint "department_id", null: false
+    t.integer "parent_id"
     t.index ["department_id"], name: "index_active_periods_on_department_id"
   end
 
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 2021_11_14_104121) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "disbanded_at"
-    t.integer "parent_id"
   end
 
   create_table "people", force: :cascade do |t|
