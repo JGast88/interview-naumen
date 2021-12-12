@@ -7,31 +7,31 @@
   <div class="card-body">
 
     <p>
-      <strong>Name:</strong>
+      <strong><%= t 'model.department.attributes.name' %>:</strong>
       <%= @department.name %>
     </p>
 
     <p>
-      <strong>Created at:</strong>
+      <strong><%= t 'model.department.attributes.created_at' %>:</strong>
       <%= @department.created_at %>
     </p>
 
     <p>
-      <strong>Disbanded at:</strong>
+      <strong><%= t 'model.department.attributes.disbanded_at' %>:</strong>
       <%= @department.disbanded_at %>
     </p>
 
     <p>
-      <strong>Parent:</strong>
-      <%= @department.parent_id %>
+      <strong><%= t 'model.department.attributes.parent' %>:</strong>
+      <%= @department.parent&.name_on_date(@date) %>
     </p>
 
   </div>
 </div>
 
 <div class="btn-group mb-3" role="group" aria-label="Basic example">
-  <%= link_to (t '.new'), new_department_path, class: 'btn btn-outline-success' %>
-  <%= link_to 'Assign person to department', new_working_period_path(department_id: @department), class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'xx..new'), new_department_path, class: 'btn btn-outline-success' %>
+  <%= link_to 'Assign person to department', new_working_period_path(department_id: @department), class: 'btn btn-outline-primary' %>
   <%= link_to 'Set parent', new_parent_department_path(@department), class: 'btn btn-outline-secondary' %>
   <%= link_to 'Set name', new_name_department_path(@department), class: 'btn btn-outline-secondary' %>
   <%= link_to 'Edit', edit_department_path(@department), class: 'btn btn-outline-secondary' %>

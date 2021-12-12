@@ -1,18 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <h1>
-  Departments
-  <%= link_to (t '.new'), new_department_path, class: 'btn btn-success' %>
+  <%= t 'xx.departments' %>
+  <%= link_to (t 'xx.new'), new_department_path, class: 'btn btn-success' %>
 </h1>
 
 
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Parent</th>
-      <th>Created at</th>
-      <th>Disbanded at</th>
+      <th><%= t 'model.department.attributes.name' %></th>
+      <th><%= t 'model.department.attributes.parent' %></th>
+      <th><%= t 'model.department.attributes.created_at' %></th>
+      <th><%= t 'model.department.attributes.disbanded_at' %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

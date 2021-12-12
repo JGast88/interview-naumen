@@ -1,6 +1,6 @@
 <tr>
-    <td><%= active_period.department_name %></td>
-    <td><%= active_period.parent_department_name %></td>
+    <td><%= active_period.name %></td>
+    <td><%= Department.find_by(id: active_period.parent_id).name_on_date(active_period.start_at) if active_period.parent_id %></td>
     <td><%= active_period.start_at %></td>
     <td><%= active_period.end_at %></td>
 </tr>

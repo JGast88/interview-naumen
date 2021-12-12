@@ -6,20 +6,19 @@ class WorkingPeriod < ApplicationRecord
   validate :periods_overlaps
   validate :working_only_at_one_department_at_time
 
-  default_scope { order(start_at: :desc) }
 
 	scope :overlapping_date, -> (date) do
     where("start_at <= ? AND (end_at > ? OR end_at IS NULL)", date, date)
 	end
-
   scope :overlapping_with_department, -> (department, date) do
     d_wps = department.working_periods.overlapping_date(date)
     wps = WorkingPeriod.overlapping_date(date)
     d_wps & wps
   end
+  default_scope { order(start_at: :asc) }
 
 	def active_timerange
-    start_at..(end_at || Date.new(2049,1,1))
+    start_at..(end_at || Date.new(9999,1,1))
   end
 
   private

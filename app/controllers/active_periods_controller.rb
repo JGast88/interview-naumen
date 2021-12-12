@@ -21,7 +21,7 @@ class ActivePeriodsController < ApplicationController
   private
   
     def active_period_params
-      params.require(:active_period).permit(:start_at, :end_at, :department_name, :parent_department_name, :department_id)
+      params.require(:active_period).permit(:start_at, :end_at, :name, :department_id)
     end
 
 end

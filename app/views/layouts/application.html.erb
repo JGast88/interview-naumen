@@ -12,17 +12,7 @@
 
   <body class="container">
 
-    <ul class="nav nav-pills nav-justified my-3">
-      <li class="nav-item active">
-          <%= link_to 'Dashboard', dashboard_path, class: "nav-link #{'active' if current_page?(dashboard_path)}" %>
-      </li>
-      <li class="nav-item">
-          <%= link_to 'People', people_path, class: "nav-link #{'active' if current_page?(people_path)}" %>
-      </li>
-      <li class="nav-item">
-          <%= link_to 'Departments', departments_path, class: "nav-link #{'active' if current_page?(departments_path)}" %>
-      </li>
-    </ul>
+    <%= render '/shared/nav' %>
 
     <%= yield %>
     

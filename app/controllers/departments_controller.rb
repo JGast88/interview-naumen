@@ -5,31 +5,27 @@ class DepartmentsController < ApplicationController
   end
 
   def set_name
-    @department.name = params[:name]
     date = params[:changed_at]
-    
-    # TODO
-    # end current active period
-    last_active_period = @department.active_periods.last
-    last_active_period.end_at = date
-    # start new active period
-    current_active_period = @department.active_periods.new(
-      start_at: date,
-      department_name: params[:name]
-    )
+    current_ap = @department.current_active_period(date)
 
-    text = 'Failed'
-    ActiveRecord::Base.transaction do
-      if @department.save!
-        if last_active_period.save!
-          if current_active_period.save!
-            text = 'Success'
-          end
-        end
+    if current_ap
+      new_ap = @department.active_periods.new(
+        start_at: params[:changed_at],
+        end_at: current_ap.end_at,
+        parent_id: @department.parent_id(params[:changed_at]),
+        name: params[:name]
+      )
+      current_ap.end_at = date
+
+      ActiveRecord::Base.transaction do
+        current_ap.save!
+        new_ap.save!
       end
+    else
+      raise 'Date should be whithin department active period'
     end
     
-    redirect_to @department, notice: text
+    redirect_to @department
   end
 
   def new_parent
@@ -37,23 +33,25 @@ class DepartmentsController < ApplicationController
   end
 
   def set_parent
-    @department.parent_id = params[:parent_id]
+    date = params[:changed_at]
+    current_ap = @department.current_active_period(date)
+    if current_ap
+      new_ap = @department.active_periods.new(
+        start_at: params[:changed_at],
+        end_at: current_ap.end_at,
+        parent_id: params[:parent_id],
+        name: @department.name_on_date(params[:changed_at]) #Department.find(params[:parent_id]).name_on_date(params[:changed_at])
+      )
+      current_ap.end_at = date
 
-    # end current active period
-    last_active_period = @department.active_periods.last
-    last_active_period.end_at = params[:changed_at]
-    # start new active period
-    current_active_period = @department.active_periods.new(
-      start_at: params[:changed_at],
-      department_name: @department.name,
-      parent_department_name: @department.parent&.name,
-    )
-
-    ActiveRecord::Base.transaction do
-      @department.save
-      last_active_period.save
-      current_active_period.save
+      ActiveRecord::Base.transaction do
+        current_ap.save!
+        new_ap.save!
+      end
+    else
+      raise 'Date should be whithin department active period'
     end
+
     redirect_to @department
   end
 
@@ -85,9 +83,9 @@ class DepartmentsController < ApplicationController
       respond_to do |format|
         if @department.save! 
           active_period = @department.active_periods.new(
+            name: department_params[:name],
             start_at: @department.created_at,
-            department_name: @department.name,
-            parent_department_name: @department.parent&.name
+            end_at: department_params[:disbanded_at]
           )
           active_period.save!
           format.html { redirect_to @department, notice: "Department was successfully created." }

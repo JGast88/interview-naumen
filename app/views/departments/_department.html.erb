@@ -2,11 +2,13 @@
 <% count = people.nil? ? 0 : people.size %>
 
 <li>
-	<%= link_to dashboard_path(department: department, date: @date ) do %>
+	<%= link_to dashboard_path(department: department, date: @date ), class: "#{'bg-primary' if department.id.to_s == params[:department]}" do %>
 		<%= department.name_on_date(@date) %>
 		<hr>
-		<small>People: <%= count %></small>
+		<small><%= t '.people_count' %>: <%= count %></small>
+		<small><%= t '.children_count' %>: <%= department.children.size %></small>
 	<% end %>
+	<% if department.children.any? %>
 	<details>
 	<summary></summary>
 		<nav class="sub-menu">
@@ -15,4 +17,5 @@
 			</ul>
 		</nav>
 	</details>
+	<% end %>
 </li>

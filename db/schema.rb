@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_104121) do
   create_table "active_periods", force: :cascade do |t|
     t.string "name"
     t.datetime "start_at"
-    t.datetime "end_at"
+    t.datetime "end_at", default: "9999-01-01 00:00:00"
     t.bigint "department_id", null: false
     t.integer "parent_id"
     t.index ["department_id"], name: "index_active_periods_on_department_id"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_104121) do
 
   create_table "working_periods", force: :cascade do |t|
     t.datetime "start_at", null: false
-    t.datetime "end_at"
+    t.datetime "end_at", default: "9999-01-01 00:00:00"
     t.bigint "department_id"
     t.bigint "person_id"
     t.index ["department_id"], name: "index_working_periods_on_department_id"

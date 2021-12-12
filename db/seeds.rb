@@ -6,18 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+people = ["Илон Маск", "Джефф Безос", "Ричард Бренсон"]
+departments = ["Отдел заказов", "Отдел сбыта", "Отдел закупок", "Проектный отдел", "Расчетный отдел", "Конструкторский отдел"]
+initial_date = Date.new(2021, 12, 1)
+
 # create 10 People in DB
-(1..10).each do |id|
+people.each do |name|
     Person.create!(
-        id: id, 
-        name: Faker::Name.name
+        fullname: name
     )
 end
 
 # create 10 tickets in DB
-(1..10).each do |id|
+departments.each_with_index do |name, i|
     Department.create!(
-        id: id,
-        name: Faker::Company.name
+        name: name,
+        created_at: initial_date + i.days
     )
 end
