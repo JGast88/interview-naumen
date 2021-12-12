@@ -31,6 +31,16 @@
 
 ru:
   model:
+    active_period:
+      attributes:
+        name: Название
+        parent: Родительский отдел
+        start_at: Начало
+        end_at: Конец
+    working_period:
+      attributes:
+        start_at: Начало
+        end_at: Конец
     department:
       one: Отдел
       many: Отделы
@@ -55,12 +65,24 @@ ru:
     department:
       people_count: Сотрудники
       children_count: Дочерние
+    actions:
+      assign_person: Прикрепить сотрудника
+      set_parent: Изменить родительский отдел
+      set_name: Изменить название
+  people:
+    actions:
+      assign_to_department: Прикрепить к отделу
   shared:
     nav:
       dashboard: Главная
       people: Сотрудники
       departments: Отделы
   xx:
-    new: Добаить
+    new: Добавить
     departments: Отделы
+    edit: Редактировать
+    list: Список
     fullname: ФИО
+    history: История
+    show: Показать
+    destroy: Удалить

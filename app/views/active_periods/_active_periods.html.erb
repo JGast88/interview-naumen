@@ -1,14 +1,14 @@
 <div class="card">
     <div class="card-header">
-        History
+        <%= t 'xx.history' %>
     </div>
     <div>
         <table class="table">
             <tr>
-                <th>Department name</th>
-                <th>Parent department name</th>
-                <th>Start</th>
-                <th>End</th>
+                <th><%= t 'model.active_period.attributes.name' %></th>
+                <th><%= t 'model.active_period.attributes.parent' %></th>
+                <th><%= t 'model.active_period.attributes.start_at' %></th>
+                <th><%= t 'model.active_period.attributes.end_at' %></th>
             </tr>
             <%= render @department.active_periods %>
         </table>

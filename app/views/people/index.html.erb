@@ -17,9 +17,9 @@
     <% @people.each do |person| %>
       <tr>
         <td><%= person.fullname %></td>
-        <td><%= link_to 'Show', person %></td>
-        <td><%= link_to 'Edit', edit_person_path(person) %></td>
-        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to (t 'xx.show'), person %></td>
+        <td><%= link_to (t 'xx.edit'), edit_person_path(person) %></td>
+        <td><%= link_to (t 'xx.destroy'), person, method: :delete, data: { confirm: (t 'xx.are_you_sure') } %></td>
       </tr>
     <% end %>
   </tbody>

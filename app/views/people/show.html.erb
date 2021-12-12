@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Fullname:</strong>
+  <strong><%= t 'model.person.attributes.fullname' %>:</strong>
   <%= @person.fullname %>
 </p>
 
 <div class="btn-group mb-3">
-  <%= link_to 'Assign person to department', new_working_period_path(person_id: @person), class: 'btn btn-outline-primary' %>
-  <%= link_to 'Edit', edit_person_path(@person), class: 'btn btn-outline-secondary' %>
-  <%= link_to 'List', people_path, class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'people.actions.assign_to_department'), new_working_period_path(person_id: @person), class: 'btn btn-outline-primary' %>
+  <%= link_to (t 'xx.edit'), edit_person_path(@person), class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'xx.list'), people_path, class: 'btn btn-outline-secondary' %>
 </div>
 
 <%= render 'working_periods/working_periods' %>

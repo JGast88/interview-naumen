@@ -30,12 +30,12 @@
 </div>
 
 <div class="btn-group mb-3" role="group" aria-label="Basic example">
-  <%= link_to (t 'xx..new'), new_department_path, class: 'btn btn-outline-success' %>
-  <%= link_to 'Assign person to department', new_working_period_path(department_id: @department), class: 'btn btn-outline-primary' %>
-  <%= link_to 'Set parent', new_parent_department_path(@department), class: 'btn btn-outline-secondary' %>
-  <%= link_to 'Set name', new_name_department_path(@department), class: 'btn btn-outline-secondary' %>
-  <%= link_to 'Edit', edit_department_path(@department), class: 'btn btn-outline-secondary' %>
-  <%= link_to 'List', departments_path, class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'xx.new'), new_department_path, class: 'btn btn-outline-success' %>
+  <%= link_to (t 'departments.actions.assign_person'), new_working_period_path(department_id: @department), class: 'btn btn-outline-primary' %>
+  <%= link_to (t 'departments.actions.set_parent'), new_parent_department_path(@department), class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'departments.actions.set_name'), new_name_department_path(@department), class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'xx.edit'), edit_department_path(@department), class: 'btn btn-outline-secondary' %>
+  <%= link_to (t 'xx.list'), departments_path, class: 'btn btn-outline-secondary' %>
 </div>
 
 <%= render 'active_periods/active_periods'  %>
